@@ -5,6 +5,7 @@ import { CssBaseline } from "@material-ui/core";
 import { SnackbarProvider } from "notistack";
 import { BrowserRouter as Router } from "react-router-dom";
 import theme from "./Theme/theme";
+import Routes from "./Routes/Routes";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <SnackbarProvider>
           <CssBaseline />
+          <Routes />
         </SnackbarProvider>
       </ThemeProvider>
     </Router>

@@ -52,10 +52,7 @@ function Room() {
       });
   }
 
-
-
   function handleSendMessage() {
-    // you're not dumb afterall
     const tempUserInput = userInput
     setUserInput("");
     sendMessage(tempUserInput).then(() => {
@@ -87,7 +84,7 @@ function Room() {
 
       <Grid id="messages" item xs={12} className={classes.messages}>
         {messages.map((message) => {
-          return <div key={message.message_id}>{message.text}</div>;
+          return <div key={message.message_id}>{message.author}: {message.text}</div>;
         })}
         <div id="messages-bottom" className={classes.bottom}></div>
       </Grid>

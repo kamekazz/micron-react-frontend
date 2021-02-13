@@ -26,7 +26,7 @@ function Login() {
   function handleSubmit() {
     authenticateUser(username, password)
   }
-  // I SAID COPY SOMETHING BITCH
+  
   return (
     <Dialog
       classes={{

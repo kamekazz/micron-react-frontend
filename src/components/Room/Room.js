@@ -32,8 +32,7 @@ function Room() {
 
     setInterval(() => {
       loadMessages();
-    }, 100)
-    // it send lol hi lol
+    }, 600)
 
 
     // return clearInterval(interval)
@@ -43,8 +42,8 @@ function Room() {
   function loadMessages() {
     getRoomMessages()
       .then((res) => {
-        setRoomName(res.data.name);
-        setMessages(res.data.messages.reverse());
+        setRoomName('room idk');
+        setMessages(res.data.results.reverse());
         scrollToChatEdge();
       })
       .catch((err) => {
@@ -62,6 +61,7 @@ function Room() {
       alert('error im gay')
     });
   }
+  
   function scrollToChatEdge() {
     document.querySelector("#messages-bottom").scrollIntoView();
   }

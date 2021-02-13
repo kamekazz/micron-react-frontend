@@ -9,7 +9,7 @@ export default function useRooms() {
   }
 
   function getRoomMessages() {
-    return axios.get("rooms/" + room_id + "/");
+    return axios.get("messages/?room=" + room_id);
   }
 
   function sendMessage(text) {

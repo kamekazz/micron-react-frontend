@@ -20,5 +20,4 @@ export default function useUser() {
     verifyToken,
     signOut,
   };
-
 }

@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import { useRooms } from "../../hooks"
-
+import React, { useState, useEffect } from "react";
+import { useRooms } from "../../hooks";
 
 function RoomList() {
-    const { getRooms } = useRooms()
-    const [rooms, setRooms] = useState([])
+  const { getRooms } = useRooms();
+  const [rooms, setRooms] = useState([]);
 
-    useEffect(() => {
-        getRooms().then(res => {
-            setRooms(res.data.results)
-        })
-    }, [])
+  useEffect(() => {
+    getRooms().then((res) => {
+      setRooms(res.data.results);
+    });
+  }, []);
 
-    return (
-        <div>
-            Rooms:
-            {
-                rooms.map(room => (
-                    <div>
-                        <a href={`/room/${room.id}`}>{room.name}</a>
-                    </div>
-                ))
-            }
+  return (
+    <div>
+      Rooms:
+      {rooms.map((room) => (
+        <div key={room.id}>
+          <a href={`/room/${room.id}`}>{room.name}</a>
         </div>
-    )
+      ))}
+    </div>
+  );
 }
 
-export default RoomList
+export default RoomList;

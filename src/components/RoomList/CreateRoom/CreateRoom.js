@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Dialog, Box, Typography, TextField, Button, makeStyles } from "@material-ui/core"
+import { Dialog, Box, Typography, TextField, Button, makeStyles, IconButton } from "@material-ui/core"
 import { useRooms } from "../../../hooks"
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const useStyles = makeStyles({
     dialog: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
     },
 });
 
-function CreateRoom({loadRooms}) {
+function CreateRoom({ loadRooms }) {
 
     const { createRoom } = useRooms()
     const classes = useStyles();
@@ -31,20 +32,21 @@ function CreateRoom({loadRooms}) {
         }
     }
 
-
     function handleEnterRoomName(e) {
         setRoomName(e.target.value);
     }
 
     function handleSubmit() {
-        createRoom(roomName).then(()=>{
+        createRoom(roomName).then(() => {
             setOpen(false)
             loadRooms()
         })
     }
     return (
         <>
-            <Button onClick={handleOpen}>create room</Button>
+            <IconButton onClick={handleOpen} size="small">
+                <AddCircleOutlineIcon />
+            </IconButton>
             <Dialog
                 classes={{
                     paper: classes.dialog,

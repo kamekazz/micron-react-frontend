@@ -46,10 +46,15 @@ export default function useUser() {
     });
   }
 
+  function getUsers(){
+    return axios("users/")
+  }
+
   return {
     authenticateUser,
     verifyToken,
     signOut,
     registerUser,
+    getUsers,
   };
 }

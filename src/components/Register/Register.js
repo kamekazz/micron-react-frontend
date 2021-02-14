@@ -35,7 +35,6 @@ function Register() {
         }
       }
     
-
     return (
         <Dialog
             classes={{

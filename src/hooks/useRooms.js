@@ -9,6 +9,10 @@ export default function useRooms() {
     return axios.get("rooms/");
   }
 
+  function getRoom(){
+    return axios.get("rooms/" + room_id + "/")
+  }
+
   function getRoomMessages() {
     return axios.get("messages/?room=" + room_id);
   }
@@ -36,6 +40,7 @@ export default function useRooms() {
 
   return {
     getRooms,
+    getRoom,
     getRoomMessages,
     sendMessage,
     createRoom,

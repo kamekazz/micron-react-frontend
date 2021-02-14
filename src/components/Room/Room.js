@@ -8,12 +8,12 @@ import Message from "../Message/Message";
 const useStyles = makeStyles((theme) => ({
   input: {
     // background: "red",
-    background: theme.palette.grey[100]
+    background: theme.palette.grey[100],
   },
   messages: {
     height: "300px",
     overflowY: "scroll",
-    background: "white"
+    background: "white",
   },
   bottom: {
     height: "20px",
@@ -35,18 +35,17 @@ function Room() {
   useEffect(() => {
     loadMessages();
 
-    getRoom().then(res => {
-      setRoomName(res.data.name)
-    })
+    getRoom().then((res) => {
+      setRoomName(res.data.name);
+    });
 
     const interval = setInterval(() => {
       loadMessages();
-    }, 600)
+    }, 600);
 
     return function () {
-      clearInterval(interval)
-    }
-
+      clearInterval(interval);
+    };
   }, []);
 
   function loadMessages() {
@@ -64,12 +63,14 @@ function Room() {
     const tempUserInput = userInput;
     if (tempUserInput.trim() == "") return;
     setUserInput("");
-    sendMessage(tempUserInput).then(() => {
-      scrollToChatEdge();
-      loadMessages();
-    }).catch(err => {
-      alert(err)
-    });
+    sendMessage(tempUserInput)
+      .then(() => {
+        scrollToChatEdge();
+        loadMessages();
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
   function scrollToChatEdge() {
@@ -99,11 +100,10 @@ function Room() {
 
         <Grid id="messages" item xs={12} className={classes.messages}>
           {messages.map((message) => {
-            return <Message message={message} />
+            return <Message message={message} />;
           })}
           <div id="messages-bottom" className={classes.bottom}></div>
         </Grid>
-
 
         <Grid item xs={12} className={classes.input}>
           <TextField

@@ -1,19 +1,26 @@
-import React, { useState } from 'react'
-import { useUser } from "../../hooks"
-import { makeStyles, IconButton, Grid, Typography, Menu, MenuItem } from "@material-ui/core"
-import PersonIcon from '@material-ui/icons/Person';
+import React, { useState } from "react";
+import { useUser } from "../../hooks";
+import {
+  makeStyles,
+  IconButton,
+  Grid,
+  Typography,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
+import PersonIcon from "@material-ui/icons/Person";
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        background: theme.palette.grey[200],
-        padding: theme.spacing(0, 2)
-    }
-}))
+const useStyles = makeStyles((theme) => ({
+  root: {
+    background: theme.palette.grey[200],
+    padding: theme.spacing(0, 2),
+  },
+}));
 
 function Header() {
-    const classes = useStyles()
-    const { signOut } = useUser()
-    const [anchorEl, setAnchorEl] = React.useState(null);
+  const classes = useStyles();
+  const { signOut } = useUser();
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,25 +31,25 @@ function Header() {
   };
 
   const handleSignOut = () => {
-      handleClose()
-      signOut()
-  }
+    handleClose();
+    signOut();
+  };
 
-    return (
-        <Grid container justify="space-between" className={classes.root} alignItems="center">
-            <Grid item>
-                <Typography>Micron</Typography>
-            </Grid>
-            <Grid item>
-                <IconButton onClick={handleClick}><PersonIcon /></IconButton>
-                <Menu open={anchorEl} onClose={handleClose}         anchorEl={anchorEl}>
-                    <MenuItem onClick={handleSignOut}>
-                        Sign Out
-                    </MenuItem>
-                </Menu>
-            </Grid>
-        </Grid>
-    )
+  return (
+    <Grid container justify="space-between" className={classes.root} alignItems="center">
+      <Grid item>
+        <Typography>Micron</Typography>
+      </Grid>
+      <Grid item>
+        <IconButton onClick={handleClick}>
+          <PersonIcon />
+        </IconButton>
+        <Menu open={anchorEl} onClose={handleClose} anchorEl={anchorEl}>
+          <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
+        </Menu>
+      </Grid>
+    </Grid>
+  );
 }
 
-export default Header
+export default Header;

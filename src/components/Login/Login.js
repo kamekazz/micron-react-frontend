@@ -1,21 +1,28 @@
 import React, { useState } from "react";
 import { useUser } from ".././../hooks";
-import { TextField, Typography, Box, Dialog, makeStyles, Button } from "@material-ui/core";
-import { Link } from "react-router-dom"
+import {
+  TextField,
+  Typography,
+  Box,
+  Dialog,
+  makeStyles,
+  Button,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   dialog: {
-    position: 'absolute',
+    position: "absolute",
     top: 50,
-    minWidth: '400px',
+    minWidth: "400px",
   },
 });
 
 function Login() {
   const classes = useStyles();
   const { authenticateUser } = useUser();
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   function handleEnterUsername(e) {
     setUsername(e.target.value);
@@ -25,7 +32,7 @@ function Login() {
   }
 
   function handleSubmit() {
-    authenticateUser(username, password)
+    authenticateUser(username, password);
   }
   function handleUserKeyDown(e) {
     if (e.key === "Enter") {
@@ -35,7 +42,7 @@ function Login() {
 
   function redirectToRegister() {
     // location.href = "/register";
-    history.push("/register")
+    history.push("/register");
   }
 
   return (
@@ -56,7 +63,6 @@ function Login() {
           ></TextField>
         </Box>
         <Box>
-
           <TextField
             label="password"
             value={password}
@@ -72,11 +78,11 @@ function Login() {
         </Box>
 
         <Box mt={3}>
-          <Link to="/register">Don't have an account? Create one</Link>
+          <Link to="/register">Don&apos;t have an account? Create one</Link>
         </Box>
       </Box>
     </Dialog>
-  )
+  );
 }
 
 export default Login;

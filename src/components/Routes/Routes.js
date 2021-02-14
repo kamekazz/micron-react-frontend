@@ -2,8 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "../Home/Home";
 import Room from "../Room/Room";
-import Login from "../Login/Login"
-import Register from "../Register/Register"
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 function Routes() {
   return (

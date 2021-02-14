@@ -9,25 +9,24 @@ export default function useRooms() {
     return axios.get("rooms/");
   }
 
-  function getRoom(){
-    return axios.get("rooms/" + room_id + "/")
+  function getRoom() {
+    return axios.get("rooms/" + room_id + "/");
   }
 
   function getRoomMessages() {
     return axios.get("messages/?room=" + room_id);
   }
 
-  function createRoom(roomName){
-    return axios("rooms/",{
+  function createRoom(roomName) {
+    return axios("rooms/", {
       method: "post",
       data: {
-        name: roomName
-      }
-    }).then(()=>{
-      history.push("/")
-    })
+        name: roomName,
+      },
+    }).then(() => {
+      history.push("/");
+    });
   }
-  
 
   function sendMessage(text) {
     const postBody = { text: text };

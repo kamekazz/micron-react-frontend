@@ -37,6 +37,6 @@
       "react/prop-types": "off",
       "no-useless-concat": "off",
       "no-unused-vars": "warn",
-      "react/jsx-key": "warm"
+      "react/jsx-key": "warn"
     }
   }

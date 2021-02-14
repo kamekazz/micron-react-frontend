@@ -1,13 +1,15 @@
 {
   "name": "unichord-frontend",
+  "homepage": "./",
+  "main": "./electron/main.js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "npm run lint && npm run build",
     "start": "webpack serve --config webpack/config.js --env env=dev",
     "build": "webpack --config webpack/config.js --env env=prod",
     "lint": "eslint .",
+    "ebuild": "npm run build && node_modules/.bin/build",
     "lint:fix": "eslint . --fix"
   },
   "repository": {
@@ -41,7 +43,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://github.com/unichord-apps/unichord-frontend#readme",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",

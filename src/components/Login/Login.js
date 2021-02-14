@@ -68,6 +68,7 @@ function Login() {
             value={password}
             onChange={handleEnterPassword}
             onKeyDown={handleUserKeyDown}
+            type="password"
           ></TextField>
         </Box>
 

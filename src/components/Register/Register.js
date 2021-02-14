@@ -64,6 +64,7 @@ function Register() {
           value={password}
           onChange={handleEnterPassword}
           onKeyDown={handleUserKeyDown}
+          type="password"
         ></TextField>
       </Box>
 

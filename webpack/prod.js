@@ -11,6 +11,6 @@ module.exports = {
     contentBase: "./build",
   },
   output: {
-    publicPath: "/static/",
+    publicPath: "/",
   },
 };

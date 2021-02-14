@@ -27,7 +27,10 @@ export default function useUser() {
 
   function verifyToken(token) {}
 
-  function signOut() {}
+  function signOut() {
+    localStorage.clear()
+    history.push("/login")
+  }
 
   function registerUser(username, password){
     axios("users/create", {

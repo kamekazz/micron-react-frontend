@@ -26,7 +26,13 @@ function Login() {
   function handleSubmit() {
     authenticateUser(username, password)
   }
-  
+  function handleUserKeyDown(e) {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  }
+
+
   return (
     <Dialog
       classes={{
@@ -41,6 +47,7 @@ function Login() {
             label="username"
             value={username}
             onChange={handleEnterUsername}
+            onKeyDown={handleUserKeyDown}
           ></TextField>
         </Box>
         <Box>
@@ -49,6 +56,7 @@ function Login() {
             label="password"
             value={password}
             onChange={handleEnterPassword}
+            onKeyDown={handleUserKeyDown}
           ></TextField>
         </Box>
 

@@ -29,6 +29,12 @@ function Register() {
     function handleRegister() {
         registerUser(username, password)
     }
+    function handleUserKeyDown(e) {
+        if (e.key === "Enter") {
+          handleSubmit();
+        }
+      }
+    
 
     return (
         <Dialog
@@ -43,6 +49,7 @@ function Register() {
                     label="username"
                     value={username}
                     onChange={handleEnterUsername}
+                    onKeyDown={handleUserKeyDown}
                 ></TextField>
             </Box>
             <Box>
@@ -50,6 +57,8 @@ function Register() {
                     label="password"
                     value={password}
                     onChange={handleEnterPassword}
+                    onKeyDown={handleUserKeyDown}
+
                 ></TextField>
             </Box>
 

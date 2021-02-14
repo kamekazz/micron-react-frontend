@@ -1,99 +1,125 @@
-import React, { useState, useEffect } from 'react'
-import { useRooms } from ".././../hooks"
-import { TextField, Typography, Grid, makeStyles } from "@material-ui/core"
+import React, { useState, useEffect } from "react";
+import { useRooms } from ".././../hooks";
+import { TextField, Typography, Grid, makeStyles } from "@material-ui/core";
+import RoomList from "../RoomList/RoomList";
+import UserList from "../UserList/UserList";
+import Message from "../Message/Message";
 
-const useStyles = makeStyles(theme => ({
-    input: {
-        background: "red",
-    },
-    messages: {
-        maxHeight: "300px",
-        overflowY: "scroll"
-    },
-    bottom: {
-        height: "20px",
-    },
-    root: {
-        height: "100vh",
-        width: "100vw",
-    }
-}))
+const useStyles = makeStyles((theme) => ({
+  input: {
+    // background: "red",
+    background: theme.palette.grey[100]
+  },
+  messages: {
+    height: "300px",
+    overflowY: "scroll",
+    background: "white"
+  },
+  bottom: {
+    height: "20px",
+  },
+  root: {
+    height: "100vh",
+    width: "100vw",
+  },
+}));
 
 function Room() {
-    const { getRoomMessages, sendMessage } = useRooms()
-    const [messages, setMessages] = useState([])
-    const [userInput, setUserInput] = useState("")
-    const [roomName, setRoomName] = useState("")
+  const { getRoomMessages, sendMessage, getRoom } = useRooms();
+  const [messages, setMessages] = useState([]);
+  const [userInput, setUserInput] = useState("");
+  const [roomName, setRoomName] = useState("");
 
-    const classes = useStyles()
+  const classes = useStyles();
 
-    useEffect(() => {
-        loadMessages()
+  useEffect(() => {
+    loadMessages();
 
-    }, [])
-    
-    function loadMessages() {
-        getRoomMessages().then(res => {
-            setRoomName(res.data.name)
-            setMessages(res.data.messages.reverse())
-            scrollToChatEdge()
-        }).catch(err => {
-            throw err
-        })
+    getRoom().then(res => {
+      setRoomName(res.data.name)
+    })
+
+    const interval = setInterval(() => {
+      loadMessages();
+    }, 600)
+
+    return function () {
+      clearInterval(interval)
     }
 
-    function handleSendMessage() {
-        sendMessage(userInput).then(() => {
-            scrollToChatEdge()
-            setUserInput("")
-            loadMessages()
-        })
+  }, []);
+
+  function loadMessages() {
+    getRoomMessages()
+      .then((res) => {
+        setMessages(res.data.results.reverse());
+        scrollToChatEdge();
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  function handleSendMessage() {
+    const tempUserInput = userInput;
+    if (tempUserInput.trim() == "") return;
+    setUserInput("");
+    sendMessage(tempUserInput).then(() => {
+      scrollToChatEdge();
+      loadMessages();
+    }).catch(err => {
+      alert(err)
+    });
+  }
+
+  function scrollToChatEdge() {
+    document.querySelector("#messages-bottom").scrollIntoView();
+  }
+
+  function handleUserInput(e) {
+    setUserInput(e.target.value);
+  }
+
+  function handleUserKeyDown(e) {
+    if (e.key === "Enter") {
+      handleSendMessage();
     }
-    function scrollToChatEdge() {
-        document.querySelector('#messages-bottom').scrollIntoView()
+  }
 
-    }
+  return (
+    <Grid container>
+      <Grid item xs={4}>
+        <RoomList />
+      </Grid>
 
-    function handleUserInput(e) {
-        setUserInput(e.target.value)
-    }
-
-    function handleUserKeyDown(e) {
-        if (e.key === 'Enter') {
-            handleSendMessage();
-        }
-    }
-
-    return (
-        <Grid container>
-
-            <Grid item xs={12}>
-                <Typography>
-                    {roomName}
-                </Typography>
-            </Grid>
-
-
-            <Grid id="messages" item xs={12} className={classes.messages}>
-                {messages.map(message => {
-                    return (
-                        <div>
-                            {message.text}
-                        </div>
-                    )
-                })}
-                <div id="messages-bottom" className={classes.bottom}></div>
-            </Grid>
-
-            <div className={classes.input}>
-                <TextField value={userInput} onChange={handleUserInput} onKeyDown={handleUserKeyDown}>
-                </TextField>
-                <button onClick={handleSendMessage}>
-                    send
-                        </button>
-            </div>
+      <Grid container item xs={6}>
+        <Grid item xs={12}>
+          <Typography>{roomName}</Typography>
         </Grid>
-    )
+
+        <Grid id="messages" item xs={12} className={classes.messages}>
+          {messages.map((message) => {
+            return <Message message={message} />
+          })}
+          <div id="messages-bottom" className={classes.bottom}></div>
+        </Grid>
+
+
+        <Grid item xs={12} className={classes.input}>
+          <TextField
+            fullWidth
+            value={userInput}
+            onChange={handleUserInput}
+            onKeyDown={handleUserKeyDown}
+          ></TextField>
+        </Grid>
+      </Grid>
+
+      <Grid item xs={2}>
+        <UserList />
+      </Grid>
+    </Grid>
+  );
 }
 
-export default Room
+export default Room;

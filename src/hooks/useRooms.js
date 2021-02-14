@@ -1,32 +1,48 @@
 import axios from "axios";
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom";
 
 export default function useRooms() {
+  const { room_id } = useParams();
+  const history = useHistory();
 
-    const  { room_id } = useParams() 
+  function getRooms() {
+    return axios.get("rooms/");
+  }
 
-    function getRooms() {
-        return axios.get('rooms/')
-    }
+  function getRoom(){
+    return axios.get("rooms/" + room_id + "/")
+  }
 
-    function getRoomMessages() {
-        return axios.get('rooms/' + room_id + '/')
-    }
+  function getRoomMessages() {
+    return axios.get("messages/?room=" + room_id);
+  }
 
-    function sendMessage(text) {
+  function createRoom(roomName){
+    return axios("rooms/",{
+      method: "post",
+      data: {
+        name: roomName
+      }
+    }).then(()=>{
+      history.push("/")
+    })
+  }
+  
 
-        const postBody =  { "text": text }
+  function sendMessage(text) {
+    const postBody = { text: text };
 
-        return axios('rooms/' + room_id + '/send', {
-            data: postBody,
-            method: "POST"
-        }
-        )
-    }
+    return axios("rooms/" + room_id + "/send", {
+      data: postBody,
+      method: "POST",
+    });
+  }
 
-    return {
-        getRooms,
-        getRoomMessages,
-        sendMessage,
-    };
+  return {
+    getRooms,
+    getRoom,
+    getRoomMessages,
+    sendMessage,
+    createRoom,
+  };
 }

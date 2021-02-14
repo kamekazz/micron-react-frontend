@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useUser } from ".././../hooks";
 import { TextField, Typography, Box, Dialog, makeStyles, Button } from "@material-ui/core";
+import { Link } from "react-router-dom"
 
 const useStyles = makeStyles({
     dialog: {
@@ -62,6 +63,9 @@ function Register() {
             </Box>
 
             <Button onClick={handleRegister}>Register</Button>
+            <Box mt={3}>
+                <Link to="/login">Already have an account? Login here.</Link>
+            </Box>
         </Dialog>
     )
 }

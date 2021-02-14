@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useUser } from ".././../hooks";
 import { TextField, Typography, Box, Dialog, makeStyles, Button } from "@material-ui/core";
+import { Link } from "react-router-dom"
 
 const useStyles = makeStyles({
   dialog: {
@@ -32,6 +33,10 @@ function Login() {
     }
   }
 
+  function redirectToRegister() {
+    // location.href = "/register";
+    history.push("/register")
+  }
 
   return (
     <Dialog
@@ -64,6 +69,10 @@ function Login() {
           <Button onClick={handleSubmit} color="primary" variant="contained">
             login
           </Button>
+        </Box>
+
+        <Box mt={3}>
+          <Link to="/register">Don't have an account? Create one</Link>
         </Box>
       </Box>
     </Dialog>

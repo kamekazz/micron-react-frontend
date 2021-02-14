@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRooms } from ".././../hooks";
 import { TextField, Typography, Grid, makeStyles } from "@material-ui/core";
 import RoomList from "../RoomList/RoomList";
-import UserList from "../UserList/UserList"
+import UserList from "../UserList/UserList";
+import Message from "../Message/Message";
 
 const useStyles = makeStyles((theme) => ({
   input: {
@@ -60,13 +61,14 @@ function Room() {
   }
 
   function handleSendMessage() {
-    const tempUserInput = userInput
+    const tempUserInput = userInput;
+    if (tempUserInput.trim() == "") return;
     setUserInput("");
     sendMessage(tempUserInput).then(() => {
       scrollToChatEdge();
       loadMessages();
     }).catch(err => {
-      alert('error im gay')
+      alert(err)
     });
   }
 
@@ -97,12 +99,12 @@ function Room() {
 
         <Grid id="messages" item xs={12} className={classes.messages}>
           {messages.map((message) => {
-            return <div key={message.message_id}>{message.author}: {message.text}</div>;
+            return <Message message={message} />
           })}
           <div id="messages-bottom" className={classes.bottom}></div>
         </Grid>
 
-        
+
         <Grid item xs={12} className={classes.input}>
           <TextField
             fullWidth
@@ -112,10 +114,10 @@ function Room() {
           ></TextField>
         </Grid>
       </Grid>
-  
-          <Grid item xs={2}>
-            <UserList />
-          </Grid>
+
+      <Grid item xs={2}>
+        <UserList />
+      </Grid>
     </Grid>
   );
 }

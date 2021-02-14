@@ -29,9 +29,24 @@ export default function useUser() {
 
   function signOut() {}
 
+  function registerUser(username, password){
+    axios("users/create", {
+      method: "post",
+      data: {
+        username: username,
+        password: password
+      },
+    }).then(res => {
+      history.push("/login")
+    }).catch(err => {
+      throw(err)
+    });
+  }
+
   return {
     authenticateUser,
     verifyToken,
     signOut,
+    registerUser,
   };
 }

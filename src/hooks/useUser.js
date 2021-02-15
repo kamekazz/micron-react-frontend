@@ -42,7 +42,10 @@ export default function useUser() {
       },
     })
       .then((res) => {
-        history.push("/login");
+
+        console.log("res", res)
+        authenticateUser(username, password)
+
       })
       .catch((err) => {
         throw err;

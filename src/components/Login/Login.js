@@ -81,7 +81,7 @@ function Login() {
         <Box mt={3}>
           <Link to="/register">Don&apos;t have an account? Create one</Link>
         </Box>
-        </Box>
+      </Box>
     </Dialog>
   );
 }

@@ -70,14 +70,15 @@ function Register() {
         </Box>
 
         <Box mt={3}>
-          <Button color="secondary" variant="contained" onClick={handleRegister}>Register</Button>
+          <Button color="secondary" variant="contained" onClick={handleRegister}>
+            Register
+          </Button>
         </Box>
         <Box mt={3}>
           <Link to="/login">Already have an account? Login here.</Link>
         </Box>
       </Box>
-
-    </Dialog >
+    </Dialog>
   );
 }
 

@@ -42,10 +42,8 @@ export default function useUser() {
       },
     })
       .then((res) => {
-
-        console.log("res", res)
-        authenticateUser(username, password)
-
+        console.log("res", res);
+        authenticateUser(username, password);
       })
       .catch((err) => {
         throw err;

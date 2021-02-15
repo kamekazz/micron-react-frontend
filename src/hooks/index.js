@@ -1,6 +1,7 @@
 import axios from "axios";
 import useUser from "./useUser";
 import useRooms from "./useRooms";
+import useTime from "./useTime";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -19,6 +20,6 @@ axios.interceptors.response.use(
     console.log("LLOOOOL");
     return Promise.reject(error);
   }
-); // yes thanks great job i did
+);
 
-export { useUser, useRooms };
+export { useUser, useRooms, useTime };

@@ -99,8 +99,18 @@ function Room() {
         </Grid>
 
         <Grid id="messages" item xs={12} className={classes.messages}>
-          {messages.map((message) => {
-            return <Message message={message} />;
+          {messages.map((message, i) => {
+            return (
+              <Message
+                key={message.created_at}
+                message={message}
+                showDate={
+                  !messages[i - 1] ||
+                  messages.length === i + 1 ||
+                  message.author !== messages[i - 1].author
+                }
+              />
+            );
           })}
           <div id="messages-bottom" className={classes.bottom}></div>
         </Grid>

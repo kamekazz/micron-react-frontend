@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dialog, Box, Grid, Typography, Button } from "@material-ui/core";
+import { Dialog, Box, Typography, Button } from "@material-ui/core";
 
 function UserDetail({ user }) {
   const [open, setOpen] = useState(false);

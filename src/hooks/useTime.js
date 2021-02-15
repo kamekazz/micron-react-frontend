@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export default function useRooms() {
   function formatDate(inputdate) {
     // should be set and stored when message is send in data base and later retrieved to display date

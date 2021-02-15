@@ -26,7 +26,7 @@ export default function useUser() {
       });
   }
 
-  function verifyToken(token) {}
+  function verifyToken() {}
 
   function signOut() {
     localStorage.clear();

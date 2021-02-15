@@ -49,30 +49,35 @@ function Register() {
       }}
       open
     >
-      <Typography>Create an account</Typography>
-      <Box mt={3}>
-        <TextField
-          label="username"
-          value={username}
-          onChange={handleEnterUsername}
-          onKeyDown={handleUserKeyDown}
-        ></TextField>
-      </Box>
-      <Box>
-        <TextField
-          label="password"
-          value={password}
-          onChange={handleEnterPassword}
-          onKeyDown={handleUserKeyDown}
-          type="password"
-        ></TextField>
+      <Box py={2} px={4}>
+        <Typography variant="h3">Create an account</Typography>
+        <Box mt={3}>
+          <TextField
+            label="username"
+            value={username}
+            onChange={handleEnterUsername}
+            onKeyDown={handleUserKeyDown}
+          ></TextField>
+        </Box>
+        <Box>
+          <TextField
+            label="password"
+            value={password}
+            onChange={handleEnterPassword}
+            onKeyDown={handleUserKeyDown}
+            type="password"
+          ></TextField>
+        </Box>
+
+        <Box mt={3}>
+          <Button color="secondary" variant="contained" onClick={handleRegister}>Register</Button>
+        </Box>
+        <Box mt={3}>
+          <Link to="/login">Already have an account? Login here.</Link>
+        </Box>
       </Box>
 
-      <Button onClick={handleRegister}>Register</Button>
-      <Box mt={3}>
-        <Link to="/login">Already have an account? Login here.</Link>
-      </Box>
-    </Dialog>
+    </Dialog >
   );
 }
 

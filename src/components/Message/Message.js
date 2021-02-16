@@ -11,6 +11,7 @@ function Message({ message, showDate }) {
     return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
   }
 
+
   return (
     <Grid container justify="space-between">
       <Grid item>

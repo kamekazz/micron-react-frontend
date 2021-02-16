@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
+import { useSnackbar } from 'notistack';
 
 export default function useRooms() {
   const { room_id } = useParams();
   const history = useHistory();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   function getRooms() {
     return axios.get("rooms/");
@@ -24,7 +26,10 @@ export default function useRooms() {
         name: roomName,
       },
     }).then(() => {
+      enqueueSnackbar("room created", {variant: "success"})
       history.push("/");
+    }).catch(()=>{
+      enqueueSnackbar("room not created", {variant: "error"})
     });
   }
 

@@ -40,11 +40,6 @@ function Login() {
     }
   }
 
-  function redirectToRegister() {
-    // location.href = "/register";
-    history.push("/register");
-  }
-
   return (
     <Dialog
       classes={{
@@ -79,7 +74,9 @@ function Login() {
         </Box>
 
         <Box mt={3}>
-          <Link to="/register">Don&apos;t have an account? Create one</Link>
+          <Link to="/register">
+            <Box color="white">Don&apos;t have an account? Create one</Box>
+          </Link>
         </Box>
       </Box>
     </Dialog>

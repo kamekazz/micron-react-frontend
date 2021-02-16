@@ -53,6 +53,7 @@ function Register() {
         <Typography variant="h3">Create an account</Typography>
         <Box mt={3}>
           <TextField
+            color="secondary"
             label="username"
             value={username}
             onChange={handleEnterUsername}
@@ -61,6 +62,7 @@ function Register() {
         </Box>
         <Box>
           <TextField
+            color="secondary"
             label="password"
             value={password}
             onChange={handleEnterPassword}
@@ -75,7 +77,9 @@ function Register() {
           </Button>
         </Box>
         <Box mt={3}>
-          <Link to="/login">Already have an account? Login here.</Link>
+          <Link to="/login">
+            <Box color="white">Already have an account? Login here.</Box>
+          </Link>
         </Box>
       </Box>
     </Dialog>

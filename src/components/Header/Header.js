@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useUser } from "../../hooks";
 import {
   makeStyles,
@@ -12,7 +12,6 @@ import PersonIcon from "@material-ui/icons/Person";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: theme.palette.grey[200],
     padding: theme.spacing(0, 2),
   },
 }));

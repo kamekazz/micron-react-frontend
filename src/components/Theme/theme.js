@@ -3,14 +3,15 @@ import { grey } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
+    type: "dark",
     background: {
-      default: grey[200],
+      default: "#29272B",
+    },
+    text: {
+      primary: "#EFEFF4",
     },
     primary: {
-      main: "#3C6E71",
-    },
-    secondary: {
-      main: "#483C46",
+      main: "#902BBA",
     },
   },
 });

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dialog, Box, Typography, Button } from "@material-ui/core";
+import { Dialog, Box, Typography, CardActionArea } from "@material-ui/core";
 
 function UserDetail({ user }) {
   const [open, setOpen] = useState(false);
@@ -14,7 +14,9 @@ function UserDetail({ user }) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>{user.username}</Button>
+      <CardActionArea onClick={handleOpen}>
+        <Typography>{user.username}</Typography>
+      </CardActionArea>
       <Dialog open={open} onClose={handleClose}>
         <Box p={3}>
           <Typography variant="h5">{user.username}</Typography>

@@ -4,16 +4,13 @@ import { TextField, Typography, Grid, makeStyles } from "@material-ui/core";
 import RoomList from "../RoomList/RoomList";
 import UserList from "../UserList/UserList";
 import Message from "../Message/Message";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 const useStyles = makeStyles((theme) => ({
-  input: {
-    // background: "red",
-    background: theme.palette.grey[100],
-  },
   messages: {
     height: "300px",
     overflowY: "scroll",
-    background: "white",
   },
   bottom: {
     height: "20px",
@@ -52,7 +49,6 @@ function Room() {
     getRoomMessages()
       .then((res) => {
         setMessages(res.data.results.reverse());
-        scrollToChatEdge();
       })
       .catch((err) => {
         throw err;
@@ -87,6 +83,11 @@ function Room() {
     }
   }
 
+  function handlePick(e) {
+    console.log(e.native);
+    setUserInput(userInput + e.native);
+  }
+
   return (
     <Grid container>
       <Grid item xs={4}>
@@ -95,7 +96,7 @@ function Room() {
 
       <Grid container item xs={6}>
         <Grid item xs={12}>
-          <Typography>{roomName}</Typography>
+          <Typography variant="h4">{roomName}</Typography>
         </Grid>
 
         <Grid id="messages" item xs={12} className={classes.messages}>
@@ -118,10 +119,12 @@ function Room() {
         <Grid item xs={12} className={classes.input}>
           <TextField
             fullWidth
+            autoFocus
             value={userInput}
             onChange={handleUserInput}
             onKeyDown={handleUserKeyDown}
           ></TextField>
+          <Picker onSelect={handlePick} />
         </Grid>
       </Grid>
 

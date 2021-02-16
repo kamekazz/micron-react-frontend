@@ -4,8 +4,8 @@ import { TextField, Typography, Grid, makeStyles } from "@material-ui/core";
 import RoomList from "../RoomList/RoomList";
 import UserList from "../UserList/UserList";
 import Message from "../Message/Message";
-import "emoji-mart/css/emoji-mart.css";
-import { Picker } from "emoji-mart";
+
+import EmojiPicker from "../EmojiPicker/EmojiPicker";
 
 const useStyles = makeStyles((theme) => ({
   messages: {
@@ -90,11 +90,11 @@ function Room() {
 
   return (
     <Grid container>
-      <Grid item xs={4}>
+      <Grid item xs={4} lg={3}>
         <RoomList />
       </Grid>
 
-      <Grid container item xs={6}>
+      <Grid container item xs={6} lg={7}>
         <Grid item xs={12}>
           <Typography variant="h4">{roomName}</Typography>
         </Grid>
@@ -116,15 +116,19 @@ function Room() {
           <div id="messages-bottom" className={classes.bottom}></div>
         </Grid>
 
-        <Grid item xs={12} className={classes.input}>
-          <TextField
-            fullWidth
-            autoFocus
-            value={userInput}
-            onChange={handleUserInput}
-            onKeyDown={handleUserKeyDown}
-          ></TextField>
-          <Picker onSelect={handlePick} />
+        <Grid item xs={12} className={classes.input} container>
+          <Grid item xs={11}>
+            <TextField
+              fullWidth
+              autoFocus
+              value={userInput}
+              onChange={handleUserInput}
+              onKeyDown={handleUserKeyDown}
+            ></TextField>
+          </Grid>
+          <Grid item xs={1}>
+            <EmojiPicker onSelect={handlePick} />
+          </Grid>
         </Grid>
       </Grid>
 

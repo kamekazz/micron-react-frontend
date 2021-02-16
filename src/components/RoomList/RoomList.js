@@ -14,8 +14,6 @@ function RoomList() {
   const classes = useStyles();
   const { room_id } = useParams();
 
-  console.log(room_id);
-
   useEffect(() => {
     loadRooms();
   }, []);

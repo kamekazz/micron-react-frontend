@@ -29,7 +29,7 @@ module.exports = {
     new EslintWebpackPlugin(),
   ],
   output: {
-    path: path.resolve(__dirname, "../build", "static"),
+    path: path.resolve(__dirname, "../build"),
     publicPath: "/",
     filename: "bundle.js",
   },

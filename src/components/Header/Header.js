@@ -37,23 +37,22 @@ function Header() {
 
   return (
     <Box p={1}>
-
-      <Grid container justify="space-between" className={classes.root} alignItems="center">
-
+      <Grid
+        container
+        justify="space-between"
+        className={classes.root}
+        alignItems="center"
+      >
         <Grid xs={2} item container spacing={2} alignContent="center">
           <Grid item>
             <img src="https://micron-web.herokuapp.com/images/micron.ico" width="28px" />
           </Grid>
           <Grid item>
-            <Typography>
-              Micron
-            </Typography>
+            <Typography>Micron</Typography>
           </Grid>
         </Grid>
 
-        <Grid item xs>
-
-        </Grid>
+        <Grid item xs></Grid>
         <Grid item xs={1}>
           <IconButton onClick={handleClick}>
             <PersonIcon />
@@ -64,7 +63,6 @@ function Header() {
         </Grid>
       </Grid>
     </Box>
-
   );
 }
 

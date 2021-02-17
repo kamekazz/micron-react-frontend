@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { useTime } from "../../hooks";
+import ReactTextFormat from 'react-text-format';
 
 function Message({ message, showDate }) {
   const { formatDate } = useTime();
@@ -19,8 +20,10 @@ function Message({ message, showDate }) {
           {checkURL(message.text) ? (
             <img width="100px" src={message.text} />
           ) : (
-            message.text
-          )}
+              <ReactTextFormat>
+                {message.text}
+              </ReactTextFormat>
+            )}
         </Typography>
       </Grid>
       <Grid item>

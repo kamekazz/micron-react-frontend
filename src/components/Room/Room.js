@@ -90,11 +90,11 @@ function Room() {
 
   return (
     <Grid container>
-      <Grid item xs={4} lg={3}>
+      <Grid item xs={12} sm={4} lg={3}>
         <RoomList />
       </Grid>
 
-      <Grid container item xs={6} lg={7}>
+      <Grid container item xs={12} sm={6} lg={7}>
         <Grid item xs={12}>
           <Typography variant="h4">{roomName}</Typography>
         </Grid>
@@ -132,7 +132,7 @@ function Room() {
         </Grid>
       </Grid>
 
-      <Grid item xs={2}>
+      <Grid item xs={12} sm={2}>
         <UserList />
       </Grid>
     </Grid>

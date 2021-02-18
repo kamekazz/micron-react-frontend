@@ -29,9 +29,15 @@ function Login() {
 
   function handleEnterUsername(e) {
     setUsername(e.target.value);
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input username");
+    }
   }
   function handleEnterPassword(e) {
     setPassword(e.target.value);
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input password");
+    }
   }
 
   function handleSubmit() {

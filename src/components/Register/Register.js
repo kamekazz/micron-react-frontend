@@ -29,16 +29,28 @@ function Register() {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   function handleEnterUsername(e) {
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input username");
+    }
     setUsername(e.target.value);
   }
 
   function handleEnterPassword(e) {
     setPassword(e.target.value);
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input password");
+    }
   }
 
   function handleRegister() {
-    registerUser(username, password);
-    enqueueSnackbar("The operation successfully done");
+    if (username == "") {
+      enqueueSnackbar("Must input username");
+    } else if (password == "") {
+      enqueueSnackbar("Must input password");
+    } else {
+      registerUser(username, password);
+      enqueueSnackbar("The operation successfully done");
+    }
   }
   function handleUserKeyDown(e) {
     if (e.key === "Enter") {

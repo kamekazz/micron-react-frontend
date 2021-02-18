@@ -48,17 +48,27 @@ function Login() {
     }
   }
 
-  function handleSubmit() {
-    authenticateUser(username, password);
-    enqueueSnackbar("Successfully Loged in!", {
-      variant: "success",
-      iconVariant: "success",
-      anchorOrigin: { vertical: "bottom", horizontal: "center" },
-    });
+  function handleSubmit(e) {
+    e.preventDefault();
+    authenticateUser(username, password)
+      .then(() => {
+        enqueueSnackbar("Successfully Loged in!", {
+          variant: "success",
+          iconVariant: "success",
+          anchorOrigin: { vertical: "bottom", horizontal: "center" },
+        });
+      })
+      .catch((error) => {
+        enqueueSnackbar("Your username or password wrong", {
+          variant: "error",
+          iconVariant: "error",
+          anchorOrigin: { vertical: "bottom", horizontal: "center" },
+        });
+      });
   }
   function handleUserKeyDown(e) {
     if (e.key === "Enter") {
-      handleSubmit();
+      handleSubmit(e);
     }
   }
 

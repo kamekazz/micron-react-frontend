@@ -28,7 +28,7 @@ export default function useRooms() {
     })
       .then(() => {
         enqueueSnackbar("room created", { variant: "success" });
-        history.push("/");
+        //history.push("/");
       })
       .catch(() => {
         enqueueSnackbar("room not created", { variant: "error" });

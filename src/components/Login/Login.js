@@ -9,6 +9,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles({
   dialog: {
@@ -24,6 +25,8 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   function handleEnterUsername(e) {
     setUsername(e.target.value);
   }
@@ -33,6 +36,7 @@ function Login() {
 
   function handleSubmit() {
     authenticateUser(username, password);
+    enqueueSnackbar("Successfully Loged in!");
   }
   function handleUserKeyDown(e) {
     if (e.key === "Enter") {

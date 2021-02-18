@@ -9,6 +9,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles({
   dialog: {
@@ -25,6 +26,8 @@ function Register() {
 
   const { registerUser } = useUser();
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   function handleEnterUsername(e) {
     setUsername(e.target.value);
   }
@@ -35,6 +38,7 @@ function Register() {
 
   function handleRegister() {
     registerUser(username, password);
+    enqueueSnackbar("The operation successfully done");
   }
   function handleUserKeyDown(e) {
     if (e.key === "Enter") {

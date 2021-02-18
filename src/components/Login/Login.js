@@ -30,19 +30,31 @@ function Login() {
   function handleEnterUsername(e) {
     setUsername(e.target.value);
     if (e.target.value == "") {
-      enqueueSnackbar("Must input username");
+      enqueueSnackbar("Must input username", {
+        variant: "warning",
+        iconVariant: "error",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
     }
   }
   function handleEnterPassword(e) {
     setPassword(e.target.value);
     if (e.target.value == "") {
-      enqueueSnackbar("Must input password");
+      enqueueSnackbar("Must input password", {
+        variant: "warning",
+        iconVariant: "error",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
     }
   }
 
   function handleSubmit() {
     authenticateUser(username, password);
-    enqueueSnackbar("Successfully Loged in!");
+    enqueueSnackbar("Successfully Loged in!", {
+      variant: "success",
+      iconVariant: "success",
+      anchorOrigin: { vertical: "bottom", horizontal: "center" },
+    });
   }
   function handleUserKeyDown(e) {
     if (e.key === "Enter") {

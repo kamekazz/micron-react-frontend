@@ -30,7 +30,11 @@ function Register() {
 
   function handleEnterUsername(e) {
     if (e.target.value == "") {
-      enqueueSnackbar("Must input username");
+      enqueueSnackbar("Must input username", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
     }
     setUsername(e.target.value);
   }
@@ -38,18 +42,34 @@ function Register() {
   function handleEnterPassword(e) {
     setPassword(e.target.value);
     if (e.target.value == "") {
-      enqueueSnackbar("Must input password");
+      enqueueSnackbar("Must input password", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
     }
   }
 
   function handleRegister() {
     if (username == "") {
-      enqueueSnackbar("Must input username");
+      enqueueSnackbar("Must input username", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
     } else if (password == "") {
-      enqueueSnackbar("Must input password");
+      enqueueSnackbar("Must input password", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
     } else {
       registerUser(username, password);
-      enqueueSnackbar("The operation successfully done");
+      enqueueSnackbar("The operation successfully done", {
+        variant: "success",
+        iconVariant: "success",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
     }
   }
   function handleUserKeyDown(e) {

@@ -9,6 +9,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles({
   dialog: {
@@ -24,19 +25,50 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   function handleEnterUsername(e) {
     setUsername(e.target.value);
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input username", {
+        variant: "warning",
+        iconVariant: "error",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
+    }
   }
   function handleEnterPassword(e) {
     setPassword(e.target.value);
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input password", {
+        variant: "warning",
+        iconVariant: "error",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
+    }
   }
 
-  function handleSubmit() {
-    authenticateUser(username, password);
+  function handleSubmit(e) {
+    e.preventDefault();
+    authenticateUser(username, password)
+      .then(() => {
+        enqueueSnackbar("Successfully Loged in!", {
+          variant: "success",
+          iconVariant: "success",
+          anchorOrigin: { vertical: "bottom", horizontal: "center" },
+        });
+      })
+      .catch((error) => {
+        enqueueSnackbar("Your username or password wrong", {
+          variant: "error",
+          iconVariant: "error",
+          anchorOrigin: { vertical: "bottom", horizontal: "center" },
+        });
+      });
   }
   function handleUserKeyDown(e) {
     if (e.key === "Enter") {
-      handleSubmit();
+      handleSubmit(e);
     }
   }
 

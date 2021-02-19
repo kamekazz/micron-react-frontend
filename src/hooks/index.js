@@ -11,14 +11,8 @@ if (token) {
   axios.defaults.headers.common["Authorization"] = "JWT " + token;
 }
 
-axios.interceptors.response.use(
-  function (response) {
-    return response;
-  },
-  function (error) {
-    location.href = "/login";
-    return Promise.reject(error);
-  }
-);
+axios.interceptors.response.use(function (response) {
+  return response;
+});
 
 export { useUser, useRooms, useTime };

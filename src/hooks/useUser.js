@@ -10,20 +10,23 @@ export default function useUser() {
   }
 
   function authenticateUser(username, password) {
-    axios("api-token-auth", {
-      method: "POST",
-      data: {
-        username: username,
-        password: password,
-      },
-    })
-      .then((res) => {
-        setToken(res.data.token);
-        history.push("/");
+    return new Promise((resolve, reject) => {
+      axios("api-token-auth", {
+        method: "POST",
+        data: {
+          username: username,
+          password: password,
+        },
       })
-      .catch((err) => {
-        throw err;
-      });
+        .then((res) => {
+          setToken(res.data.token);
+          history.push("/");
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
   }
 
   function verifyToken() {}

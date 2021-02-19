@@ -9,6 +9,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles({
   dialog: {
@@ -25,16 +26,51 @@ function Register() {
 
   const { registerUser } = useUser();
 
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
   function handleEnterUsername(e) {
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input username", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
+    }
     setUsername(e.target.value);
   }
 
   function handleEnterPassword(e) {
     setPassword(e.target.value);
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input password", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
+    }
   }
 
   function handleRegister() {
-    registerUser(username, password);
+    if (username == "") {
+      enqueueSnackbar("Must input username", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
+    } else if (password == "") {
+      enqueueSnackbar("Must input password", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
+    } else {
+      registerUser(username, password);
+      enqueueSnackbar("The operation successfully done", {
+        variant: "success",
+        iconVariant: "success",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
+    }
   }
   function handleUserKeyDown(e) {
     if (e.key === "Enter") {

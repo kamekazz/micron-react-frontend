@@ -1,15 +1,24 @@
+/* eslint-disable prettier/prettier */
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
-import { useTime } from "../../hooks";
+import { Grid, Typography, Box, Button } from "@material-ui/core";
+import { useTime, useRooms } from "../../hooks";
+//import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import ReactTextFormat from "react-text-format";
+import EmojiPicker from '../EmojiPicker/EmojiPicker'
 
 function Message({ message, showDate }) {
   const { formatDate } = useTime();
+  const { createReaction } = useRooms();
 
   function checkURL(url) {
     if (url.split(" ").length > 1) return false;
 
     return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+  }
+
+  function handleReaction(e) {
+    console.log(message.message_id)
+    createReaction(message.message_id, e.native);
   }
 
   return (
@@ -23,9 +32,20 @@ function Message({ message, showDate }) {
             <ReactTextFormat>{message.text}</ReactTextFormat>
           )}
         </Typography>
+        <Box>
+          {
+            message.reactions.map(reaction => (
+              reaction.text
+            ))
+          }
+        </Box>
       </Grid>
       <Grid item>
-        <Typography>{showDate && formatDate(message.created_at)}</Typography>
+        <Typography>{showDate && formatDate(message.created_at)}
+          <Button size="small">
+            <EmojiPicker onSelect = {handleReaction}></EmojiPicker>
+          </Button>
+        </Typography>
       </Grid>
     </Grid>
   );

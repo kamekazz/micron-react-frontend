@@ -19,6 +19,17 @@ export default function useRooms() {
     return axios.get("messages/?room=" + room_id);
   }
 
+  function createReaction(message_id, text) {
+    return axios(`messages/${message_id}/reaction/create`, {
+      method: "post",
+      data: {
+        text: text,
+      },
+    }).then(() => {
+      console.log("reaction created");
+    });
+  }
+
   function createRoom(roomName) {
     return axios("rooms/", {
       method: "post",
@@ -50,5 +61,6 @@ export default function useRooms() {
     getRoomMessages,
     sendMessage,
     createRoom,
+    createReaction,
   };
 }

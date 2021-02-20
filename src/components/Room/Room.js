@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useRooms } from ".././../hooks";
-import { TextField, Typography, Grid, makeStyles } from "@material-ui/core";
+import { Typography, Grid, makeStyles } from "@material-ui/core";
 import RoomList from "../RoomList/RoomList";
 import UserList from "../UserList/UserList";
 import Message from "../Message/Message";
-
-import EmojiPicker from "../EmojiPicker/EmojiPicker";
+import MessageInput from "../MessageInput/MessageInput"
 
 const useStyles = makeStyles((theme) => ({
   messages: {
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 function Room() {
   const { getRoomMessages, sendMessage, getRoom } = useRooms();
   const [messages, setMessages] = useState([]);
-  const [userInput, setUserInput] = useState("");
   const [roomName, setRoomName] = useState("");
 
   const classes = useStyles();
@@ -38,7 +36,7 @@ function Room() {
 
     const interval = setInterval(() => {
       loadMessages();
-    }, 1000);
+    }, 5000);
 
     return function () {
       clearInterval(interval);
@@ -55,10 +53,10 @@ function Room() {
       });
   }
 
-  function handleSendMessage() {
+  function handleSendMessage(userInput) {
     const tempUserInput = userInput;
     if (tempUserInput.trim() == "") return;
-    setUserInput("");
+  
     sendMessage(tempUserInput)
       .then(() => {
         scrollToChatEdge();
@@ -73,19 +71,7 @@ function Room() {
     document.querySelector("#messages-bottom").scrollIntoView();
   }
 
-  function handleUserInput(e) {
-    setUserInput(e.target.value);
-  }
-
-  function handleUserKeyDown(e) {
-    if (e.key === "Enter") {
-      handleSendMessage();
-    }
-  }
-
-  function handlePick(e) {
-    setUserInput(userInput + e.native);
-  }
+ 
 
   return (
     <Grid container>
@@ -115,20 +101,7 @@ function Room() {
           <div id="messages-bottom" className={classes.bottom}></div>
         </Grid>
 
-        <Grid item xs={12} className={classes.input} container>
-          <Grid item xs={11}>
-            <TextField
-              fullWidth
-              autoFocus
-              value={userInput}
-              onChange={handleUserInput}
-              onKeyDown={handleUserKeyDown}
-            ></TextField>
-          </Grid>
-          <Grid item xs={1}>
-            <EmojiPicker onSelect={handlePick} />
-          </Grid>
-        </Grid>
+        <MessageInput handleSendMessage={handleSendMessage} />
       </Grid>
 
       <Grid item xs={12} sm={2}>

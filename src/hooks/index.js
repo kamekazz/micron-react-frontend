@@ -9,9 +9,16 @@ const token = localStorage.getItem("token");
 
 if (token) {
   axios.defaults.headers.common["Authorization"] = "JWT " + token;
+} else {
+  if (location.pathname !== "/login" && location.pathname !== "/register") {
+    location.pathname = "login"
+  }
 }
 
 axios.interceptors.response.use(function (response) {
+  // console.log(response)
+
+
   return response;
 });
 

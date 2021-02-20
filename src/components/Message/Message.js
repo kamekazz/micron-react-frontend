@@ -17,7 +17,6 @@ function Message({ message, showDate }) {
   }
 
   function handleReaction(e) {
-    console.log(message.message_id)
     createReaction(message.message_id, e.native);
   }
 
@@ -42,9 +41,7 @@ function Message({ message, showDate }) {
       </Grid>
       <Grid item>
         <Typography>{showDate && formatDate(message.created_at)}
-          <Button size="small">
             <EmojiPicker onSelect = {handleReaction}></EmojiPicker>
-          </Button>
         </Typography>
       </Grid>
     </Grid>

@@ -41,7 +41,7 @@ function Message({ message, showDate }) {
       </Grid>
       <Grid item>
         <Typography>{showDate && formatDate(message.created_at)}
-            <EmojiPicker onSelect = {handleReaction}></EmojiPicker>
+          <EmojiPicker onSelect = {handleReaction}></EmojiPicker>
         </Typography>
       </Grid>
     </Grid>

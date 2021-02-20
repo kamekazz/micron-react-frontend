@@ -4,7 +4,7 @@ import { Typography, Grid, makeStyles } from "@material-ui/core";
 import RoomList from "../RoomList/RoomList";
 import UserList from "../UserList/UserList";
 import Message from "../Message/Message";
-import MessageInput from "../MessageInput/MessageInput"
+import MessageInput from "../MessageInput/MessageInput";
 
 const useStyles = makeStyles((theme) => ({
   messages: {
@@ -56,7 +56,7 @@ function Room() {
   function handleSendMessage(userInput) {
     const tempUserInput = userInput;
     if (tempUserInput.trim() == "") return;
-  
+
     sendMessage(tempUserInput)
       .then(() => {
         scrollToChatEdge();
@@ -70,8 +70,6 @@ function Room() {
   function scrollToChatEdge() {
     document.querySelector("#messages-bottom").scrollIntoView();
   }
-
- 
 
   return (
     <Grid container>

@@ -4,7 +4,7 @@ import { Grid, Typography, Box, Button } from "@material-ui/core";
 import { useTime, useRooms } from "../../hooks";
 //import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import ReactTextFormat from "react-text-format";
-import EmojiPicker from '../EmojiPicker/EmojiPicker'
+import EmojiPicker from "../EmojiPicker/EmojiPicker"
 
 function Message({ message, showDate }) {
   const { formatDate } = useTime();

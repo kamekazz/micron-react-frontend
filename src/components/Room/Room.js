@@ -38,7 +38,7 @@ function Room() {
 
     const interval = setInterval(() => {
       loadMessages();
-    }, 600);
+    }, 1000);
 
     return function () {
       clearInterval(interval);

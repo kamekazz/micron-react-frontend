@@ -7,19 +7,22 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const token = localStorage.getItem("token");
 
-if (token) {
-  axios.defaults.headers.common["Authorization"] = "JWT " + token;
-} else {
+function redirectToLoginIfNotAtUnauthenticatedView() {
   if (location.pathname !== "/login" && location.pathname !== "/register") {
     location.pathname = "login"
   }
+
 }
 
-axios.interceptors.response.use(function (response) {
-  // console.log(response)
+if (token) {
+  axios.defaults.headers.common["Authorization"] = "JWT " + token;
+} else {
+  redirectToLoginIfNotAtUnauthenticatedView()
+}
 
-
-  return response;
-});
+axios.get("/api-token-verify/").then(() => {
+}).catch(() => {
+  redirectToLoginIfNotAtUnauthenticatedView()
+})
 
 export { useUser, useRooms, useTime };

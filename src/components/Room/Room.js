@@ -84,7 +84,6 @@ function Room() {
   }
 
   function handlePick(e) {
-    console.log(e.native);
     setUserInput(userInput + e.native);
   }
 

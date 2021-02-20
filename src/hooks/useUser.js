@@ -45,7 +45,6 @@ export default function useUser() {
       },
     })
       .then((res) => {
-        console.log("res", res);
         authenticateUser(username, password);
       })
       .catch((err) => {

@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable prettier/prettier */
 import React from "react";
-import { Grid, Typography, Box, Button, makeStyles } from "@material-ui/core";
-import { useTime, useRooms } from "../../hooks";
+import { Grid, Typography, Box, makeStyles, Badge, Button } from "@material-ui/core";
+import { useTime, useRooms, useReaction } from "../../hooks";
 //import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import ReactTextFormat from "react-text-format";
 import EmojiPicker from "../EmojiPicker/EmojiPicker"
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Message({ message, showDate }) {
   const { formatDate } = useTime();
+  const { formatReaction } = useReaction();
   const classes = useStyles();
   const { createReaction } = useRooms();
 
@@ -40,6 +41,8 @@ function Message({ message, showDate }) {
   function handleReaction(e) {
     createReaction(message.message_id, e.native);
   }
+  
+  const emojiSet = formatReaction(message.reactions);
 
   return (
     <Grid container className={classes.row}>
@@ -70,9 +73,14 @@ function Message({ message, showDate }) {
       <Grid item xs={12}>
         <Box>
           {
-            message.reactions.map(reaction => (
-              reaction.text
-            ))
+            Object.keys(emojiSet).map(key => {
+              console.log(key)
+              return <Button size="small" key={key} onClick={() => {
+                createReaction(message.message_id, key)
+              }}>
+                <Badge badgeContent={emojiSet[key]}>{key}</Badge>
+              </Button>;
+            })
           }
         </Box>
       </Grid>

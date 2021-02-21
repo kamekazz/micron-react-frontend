@@ -11,6 +11,11 @@ function EmojiPicker({ onSelect }) {
     setAnchorEl(event.currentTarget);
   }
 
+  function handleSelect(e) {
+    onSelect(e);
+    handleClose();
+  }
+
   function handleClose() {
     setAnchorEl(null);
   }
@@ -26,7 +31,7 @@ function EmojiPicker({ onSelect }) {
         keepMounted
         open={Boolean(anchorEl)}
       >
-        <Picker onSelect={onSelect} />
+        <Picker onSelect={handleSelect} />
       </Menu>
     </>
   );

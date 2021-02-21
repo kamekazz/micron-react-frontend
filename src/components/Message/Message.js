@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable prettier/prettier */
 import React from "react";
-import { Grid, Typography, Box, makeStyles, Badge, Button } from "@material-ui/core";
+import { Grid, Typography, Box, makeStyles, Badge, ButtonBase } from "@material-ui/core";
 import { useTime, useRooms, useReaction } from "../../hooks";
 //import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import ReactTextFormat from "react-text-format";
@@ -12,16 +12,19 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     "&:hover > *": {
       visibility: "visible !important",
+      background: theme.palette.grey[800]
     },
   },
   overlay: {
     visibility: "hidden",
     position: "absolute",
-    top: theme.spacing(1),
     right: theme.spacing(1.5),
   },
+  reaction: {
+    padding: theme.spacing(1),
+  },
   profilepic: {
-    background: "red",
+    background: theme.palette.grey[900],
     borderRadius: "50%"
   },
 }));
@@ -51,10 +54,11 @@ function Message({ message, showDate }) {
         <Grid item container xs={12} justify="space-between">
           <Box mt={1.5}>
             <Typography>
-              <Box borderRadius="5%" component="span">
+              <Box borderRadius="5%" component="span" mr={1}>
                 <img src="https://micron-web.herokuapp.com/images/micron.png" width="30px" className={classes.profilepic}/>
               </Box>
-              {message.author} {" "}
+              {message.author}
+              {" "}
               <Typography variant="caption" color="textSecondary"> {showDate && formatDate(message.created_at)}</Typography>
             </Typography>
           </Box>
@@ -75,11 +79,11 @@ function Message({ message, showDate }) {
           {
             Object.keys(emojiSet).map(key => {
               console.log(key)
-              return <Button size="small" key={key} onClick={() => {
+              return <ButtonBase className={classes.reaction} key={key} onClick={() => {
                 createReaction(message.message_id, key)
               }}>
-                <Badge badgeContent={emojiSet[key]}>{key}</Badge>
-              </Button>;
+                <Badge badgeContent={emojiSet[key] === 1 ? null : emojiSet[key]}>{key}</Badge>
+              </ButtonBase>;
             })
           }
         </Box>

@@ -89,7 +89,7 @@ function Message({ message, showDate }) {
         </Box>
       </Grid>
       <Grid item xs={12} className={classes.overlay}>
-        <EmojiPicker onSelect = {handleReaction}></EmojiPicker>
+        <EmojiPicker onSelect={handleReaction} size="small"></EmojiPicker>
       </Grid>
     </Grid>
   );

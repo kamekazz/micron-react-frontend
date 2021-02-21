@@ -4,7 +4,7 @@ import { Picker } from "emoji-mart";
 import { IconButton, Menu } from "@material-ui/core";
 import MoodIcon from "@material-ui/icons/Mood";
 
-function EmojiPicker({ onSelect }) {
+function EmojiPicker({ onSelect, size }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function handleOpen(event) {
@@ -22,7 +22,7 @@ function EmojiPicker({ onSelect }) {
 
   return (
     <>
-      <IconButton onClick={handleOpen}>
+      <IconButton onClick={handleOpen} size={size}>
         <MoodIcon />
       </IconButton>
       <Menu

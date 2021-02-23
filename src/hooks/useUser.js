@@ -35,6 +35,7 @@ export default function useUser() {
   function signOut() {
     localStorage.clear();
     history.push("/login");
+    localStorage.removeItem("username");
   }
 
   function registerUser(username, password) {

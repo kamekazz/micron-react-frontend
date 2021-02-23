@@ -5,18 +5,20 @@ import RoomList from "../RoomList/RoomList";
 import UserList from "../UserList/UserList";
 import Message from "../Message/Message";
 import MessageInput from "../MessageInput/MessageInput";
-
+//import useWindowDimensions from "../../hooks";
+//const { height, width } = useWindowDimensions();
+console.log(window.innerHeight);
 const useStyles = makeStyles((theme) => ({
   messages: {
-    height: "300px",
+    height: window.innerHeight / 1.5,
     overflowY: "scroll",
   },
   bottom: {
     height: "20px",
   },
   root: {
-    height: "100vh",
-    width: "100vw",
+    height: "70vh",
+    width: "70vw",
   },
 }));
 
@@ -73,13 +75,11 @@ function Room() {
 
   return (
     <Grid container>
-      <Grid item xs={12} sm={4} lg={3}>
-        <RoomList />
-      </Grid>
-
       <Grid container item xs={12} sm={6} lg={7}>
         <Grid item xs={12}>
-          <Typography variant="h4">{roomName}</Typography>
+          <Typography variant="h4" align="center">
+            {roomName}
+          </Typography>
         </Grid>
 
         <Grid id="messages" item xs={12} className={classes.messages}>
@@ -101,9 +101,11 @@ function Room() {
 
         <MessageInput handleSendMessage={handleSendMessage} />
       </Grid>
-
-      <Grid item xs={12} sm={2}>
-        <UserList />
+      <Grid item xs={2}>
+        <RoomList />
+      </Grid>
+      <Grid item xs={2}>
+        Users: <UserList />
       </Grid>
     </Grid>
   );

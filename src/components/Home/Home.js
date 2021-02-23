@@ -1,19 +1,27 @@
+/* eslint-disable prettier/prettier */
 import { Grid, Typography, Box } from "@material-ui/core";
 import React from "react";
 import RoomList from "../RoomList/RoomList";
 import Room from "../Room/Room";
 
 function Home() {
+  function getUsername() {
+    const user = localStorage.getItem("username");
+    return user;
+  }
+
   return (
     <Grid container alignItems="stretch">
       <Grid item xs={12}>
-        <Box maxWidth="400px" justifyContent="center" margin="auto">
-          <Typography variant="h5" align="center">
-            Welcome to Micron! You can create a new room by clicking the + next to the
-            room, or you can click on an existing room to start chatting. Good luck!
+        <Box display="flex" alignItems="center" justifyContent="center" margin="auto">
+          <Typography variant="h3" align="center">
+            Hello, {getUsername()}!
           </Typography>
         </Box>
-        <RoomList />
+        <Box>
+          <Typography variant="h4" align="center">Select a room and start chatting.</Typography>
+          <RoomList />
+        </Box>
       </Grid>
     </Grid>
   );

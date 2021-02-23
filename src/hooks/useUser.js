@@ -21,6 +21,7 @@ export default function useUser() {
         .then((res) => {
           setToken(res.data.token);
           history.push("/");
+          localStorage.setItem("username", username);
           resolve();
         })
         .catch((err) => {

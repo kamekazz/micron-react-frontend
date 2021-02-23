@@ -11,7 +11,7 @@ function UserDetail({ user }) {
   function handleOpen() {
     setOpen(true);
   }
-
+  console.log(user);
   return (
     <div>
       <CardActionArea onClick={handleOpen}>
@@ -22,11 +22,12 @@ function UserDetail({ user }) {
           <Typography variant="h5">{user.username}</Typography>
 
           <Typography>
-            last_login: {new Date(user.last_login).toLocaleString()}
+            Last Login: {new Date(user.last_login).toLocaleString()}
           </Typography>
           <Typography>
-            date_joined: {new Date(user.date_joined).toLocaleString()}
+            Date Joined: {new Date(user.date_joined).toLocaleString()}
           </Typography>
+          <Typography>Email: {user.email}</Typography>
           <Typography>{user.is_staff && "is staff"}</Typography>
           <Typography>{user.is_superuser && "is superuser"}</Typography>
         </Box>

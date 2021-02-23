@@ -23,6 +23,7 @@ function Register() {
   const [username, setUsername] = useState("");
   const classes = useStyles();
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const { registerUser } = useUser();
 
@@ -50,6 +51,17 @@ function Register() {
     }
   }
 
+  function handleEnterEmail(e) {
+    setEmail(e.target.value);
+    if (e.target.value == "") {
+      enqueueSnackbar("Must input e-mail", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
+    }
+  }
+
   function handleRegister() {
     if (username == "") {
       enqueueSnackbar("Must input username", {
@@ -63,8 +75,14 @@ function Register() {
         iconVariant: "warning",
         anchorOrigin: { vertical: "bottom", horizontal: "center" },
       });
+    } else if (email == "") {
+      enqueueSnackbar("Must input e-mail", {
+        variant: "warning",
+        iconVariant: "warning",
+        anchorOrigin: { vertical: "bottom", horizontal: "center" },
+      });
     } else {
-      registerUser(username, password);
+      registerUser(username, password, email);
       enqueueSnackbar("The operation successfully done", {
         variant: "success",
         iconVariant: "success",
@@ -104,6 +122,15 @@ function Register() {
             onChange={handleEnterPassword}
             onKeyDown={handleUserKeyDown}
             type="password"
+          ></TextField>
+        </Box>
+        <Box>
+          <TextField
+            color="secondary"
+            label="email"
+            value={email}
+            onChange={handleEnterEmail}
+            onKeyDown={handleUserKeyDown}
           ></TextField>
         </Box>
 

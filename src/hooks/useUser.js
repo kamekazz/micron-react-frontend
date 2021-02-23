@@ -38,12 +38,13 @@ export default function useUser() {
     localStorage.removeItem("username");
   }
 
-  function registerUser(username, password) {
+  function registerUser(username, password, email) {
     axios("users/create", {
       method: "post",
       data: {
         username: username,
         password: password,
+        email: email,
       },
     })
       .then((res) => {

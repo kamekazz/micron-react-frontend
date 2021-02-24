@@ -4,6 +4,7 @@ import Home from "../Home/Home";
 import Room from "../Room/Room";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import NoPage from "../NoPage/NoPage";
 
 function Routes() {
   return (
@@ -12,6 +13,7 @@ function Routes() {
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/" component={Home} />
+      <Route component={NoPage} />
     </Switch>
   );
 }

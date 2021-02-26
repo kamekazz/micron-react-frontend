@@ -4,7 +4,7 @@ import CreateRoom from "./CreateRoom/CreateRoom";
 import { makeStyles, Box, Grid, CardActionArea } from "@material-ui/core";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 import { useParams } from "react-router-dom";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {},
 }));
 

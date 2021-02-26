@@ -1,11 +1,11 @@
 import axios from "axios";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
 export default function useRooms() {
   const { room_id } = useParams();
-  const history = useHistory();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  //const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
 
   function getRooms() {
     return axios.get("rooms/");

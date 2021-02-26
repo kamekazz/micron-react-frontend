@@ -25,7 +25,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   function handleEnterUsername(e) {
     setUsername(e.target.value);
@@ -59,6 +59,7 @@ function Login() {
         });
       })
       .catch((error) => {
+        console.log(error);
         enqueueSnackbar("Your username or password wrong", {
           variant: "error",
           iconVariant: "error",

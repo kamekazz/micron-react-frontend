@@ -1,6 +1,7 @@
 export default function useRooms() {
   function formatDate(inputdate) {
-    // should be set and stored when message is send in data base and later retrieved to display date
+    // should be set and stored when message is send in
+    //data base and later retrieved to display date
     let databasedate = new Date(inputdate);
     // let databasedate2 = Date.now()
 
@@ -14,7 +15,8 @@ export default function useRooms() {
     let year = 32140800000;
     let alot = 10000000000000000000000000;
 
-    //first if statement checks if diff is less than a day secons if less than a month third if less than a year and third if less than a lot
+    //first if statement checks if diff is less than a day
+    //seconds if less than a month third if less than a year and third if less than a lot
     if (date - databasedate < day) {
       //instead of console log display this value
       return "Today at " + timeformat(databasedate);

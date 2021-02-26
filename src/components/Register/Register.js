@@ -27,7 +27,7 @@ function Register() {
 
   const { registerUser } = useUser();
 
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   function handleEnterUsername(e) {
     if (e.target.value == "") {

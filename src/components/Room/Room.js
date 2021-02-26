@@ -8,7 +8,7 @@ import MessageInput from "../MessageInput/MessageInput";
 //import useWindowDimensions from "../../hooks";
 //const { height, width } = useWindowDimensions();
 console.log(window.innerHeight);
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   messages: {
     height: window.innerHeight / 1.5,
     overflowY: "scroll",

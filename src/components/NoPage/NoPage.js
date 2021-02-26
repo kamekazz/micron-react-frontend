@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Dialog, Box, Typography, CardActionArea } from "@material-ui/core";
+import React from "react";
+import { Typography } from "@material-ui/core";
 
 function NoPage() {
   return <Typography>damn, page not found</Typography>;

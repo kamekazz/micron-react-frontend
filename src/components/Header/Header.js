@@ -1,5 +1,7 @@
 import React from "react";
 import { useUser } from "../../hooks";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 import {
   makeStyles,
   IconButton,
@@ -10,10 +12,17 @@ import {
   Box,
 } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(0, 2),
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
   },
 }));
 
@@ -36,34 +45,56 @@ function Header() {
   };
 
   return (
-    <Box p={1}>
-      <Grid
-        container
-        justify="space-between"
-        className={classes.root}
-        alignItems="center"
-      >
-        <Grid xs={2} item container spacing={2} alignContent="center">
-          <Grid item>
+    <div className={classes.root}>
+      <AppBar position="static" style={{ backgroundColor: "black" }}>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            component={Link}
+            to="/"
+          >
             <img src="https://micron-web.herokuapp.com/images/micron.ico" width="28px" />
-          </Grid>
-          <Grid item>
-            <Typography>Micron</Typography>
-          </Grid>
-        </Grid>
-
-        <Grid item xs></Grid>
-        <Grid item xs={1}>
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Micron
+          </Typography>
           <IconButton onClick={handleClick}>
             <PersonIcon />
           </IconButton>
           <Menu open={Boolean(anchorEl)} onClose={handleClose} anchorEl={anchorEl}>
             <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
           </Menu>
-        </Grid>
-      </Grid>
-    </Box>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
 
 export default Header;
+{
+  /* <Box p={1}>
+  <Grid container justify="space-between" className={classes.root} alignItems="center">
+    <Grid xs={2} item container spacing={2} alignContent="center">
+      <Grid item>
+        <img src="https://micron-web.herokuapp.com/images/micron.ico" width="28px" />
+      </Grid>
+      <Grid item>
+        <Typography>Micron</Typography>
+      </Grid>
+    </Grid>
+
+    <Grid item xs></Grid>
+    <Grid item xs={1}>
+      <IconButton onClick={handleClick}>
+        <PersonIcon />
+      </IconButton>
+      <Menu open={Boolean(anchorEl)} onClose={handleClose} anchorEl={anchorEl}>
+        <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
+      </Menu>
+    </Grid>
+  </Grid>
+</Box>; */
+}

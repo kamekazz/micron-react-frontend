@@ -9,10 +9,10 @@ import NoPage from "../NoPage/NoPage";
 function Routes() {
   return (
     <Switch>
-      <Route path="/room/:room_id" component={Room} />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
-      <Route path="/" component={Home} />
+      <Route exact path="/room/:room_id" component={Room} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/" component={Home} />
       <Route component={NoPage} />
     </Switch>
   );

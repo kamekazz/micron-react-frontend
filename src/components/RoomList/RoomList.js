@@ -3,7 +3,7 @@ import { useRooms } from "../../hooks";
 import CreateRoom from "./CreateRoom/CreateRoom";
 import { makeStyles, Box, Grid, CardActionArea } from "@material-ui/core";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
-import { useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 const useStyles = makeStyles(() => ({
   root: {},
 }));
@@ -31,11 +31,7 @@ function RoomList() {
       <Grid container>
         {rooms.map((room) => (
           <Grid item key={room.id} xs={12}>
-            <CardActionArea
-              onClick={() => {
-                location.href = `/room/${room.id}`;
-              }}
-            >
+            <CardActionArea component={NavLink} to={`/room/${room.id}`}>
               <Box p={2} color="primary">
                 <Grid container alignItems="center">
                   <Grid item>

@@ -57,7 +57,7 @@ function Header() {
           <IconButton onClick={handleClick}>
             <PersonIcon />
           </IconButton>
-          <Menu open={anchorEl} onClose={handleClose} anchorEl={anchorEl}>
+          <Menu open={Boolean(anchorEl)} onClose={handleClose} anchorEl={anchorEl}>
             <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
           </Menu>
         </Grid>

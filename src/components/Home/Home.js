@@ -1,44 +1,83 @@
 /* eslint-disable prettier/prettier */
-import { Grid, Typography, Box } from "@material-ui/core";
 import React from "react";
+
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+import Paper from "@material-ui/core/Paper";
+
+import Grid from "@material-ui/core/Grid";
+
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import RoomList from "../RoomList/RoomList";
-import { fadeIn } from "react-animations";
-import Radium, {StyleRoot} from "radium";
 
-const styles = {
-  bounce: {
-    animation: "x 2s",
-    animationName: Radium.keyframes(fadeIn, "bounce")
-  }
-}
+const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    overflow: "hidden",
+  },
+  image: {
+    backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundRepeat: "no-repeat",
+    backgroundColor:
+      theme.palette.type === "light" ? theme.palette.grey[50] : theme.palette.grey[900],
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  paper: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  box: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+}));
 
-function Home() {
-  function getUsername() {
-    const user = localStorage.getItem("username");
-    return user;
-  }
+export default function Home() {
+  const classes = useStyles();
 
   return (
-    <StyleRoot>
-      <div className="test" style={styles.bounce}>
-        <Grid container alignItems="stretch" className="test" style={styles.bounce}>
-          <Grid item xs={12}>
-            <Box display="flex" alignItems="center" justifyContent="center" margin="auto">
-              <Typography variant="h3" align="center">
-                Hello, {getUsername()}!
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant="h4" align="center">
-                Select a room and start chatting.
-              </Typography>
-              <RoomList />
-            </Box>
-          </Grid>
-        </Grid>
-      </div>
-    </StyleRoot>
+    <Grid container component="main" className={classes.root}>
+      <CssBaseline />
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid
+        item
+        xs={12}
+        sm={8}
+        md={5}
+        component={Paper}
+        elevation={6}
+        square
+        className={classes.box}
+      >
+        <div className={classes.paper}>
+          <img src="https://micron-web.herokuapp.com/images/micron.ico" width="100px" />
+          <Typography component="h1" variant="h2">
+            micron
+          </Typography>
+          <Typography variant="h5" gutterBottom align="center">
+            Welcome to the brand new chat experience.
+          </Typography>
+          <div className={classes.form} noValidate>
+            <RoomList page="Home" />
+          </div>
+        </div>
+      </Grid>
+    </Grid>
   );
 }
-
-export default Home;

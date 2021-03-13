@@ -4,15 +4,17 @@ import CreateRoom from "./CreateRoom/CreateRoom";
 import { makeStyles, Box, Grid, CardActionArea } from "@material-ui/core";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 import { Link, NavLink, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 const useStyles = makeStyles(() => ({
   root: {},
 }));
 
 function RoomList() {
-  const { getRooms } = useRooms();
+  const { getRooms, getRoomMessages } = useRooms();
   const [rooms, setRooms] = useState([]);
   const classes = useStyles();
   const { room_id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     loadRooms();
@@ -24,13 +26,24 @@ function RoomList() {
     });
   }
 
+  function chanceRoom() {
+    dispatch({ type: "CLEAR_MESSAGES" });
+    getRoomMessages()
+      .then((res) => {
+        dispatch({ type: "LOAD_MESSAGES", payload: res.data.results.reverse() });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
   return (
     <Box px={2} className={classes.root}>
-      Rooms:
       <CreateRoom loadRooms={loadRooms} />
+      Create New Room
       <Grid container>
         {rooms.map((room) => (
-          <Grid item key={room.id} xs={12}>
+          <Grid item key={room.id} xs={12} onClick={chanceRoom}>
             <CardActionArea component={NavLink} to={`/room/${room.id}`}>
               <Box p={2} color="primary">
                 <Grid container alignItems="center">

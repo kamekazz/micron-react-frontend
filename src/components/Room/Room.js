@@ -5,6 +5,7 @@ import RoomList from "../RoomList/RoomList";
 import UserList from "../UserList/UserList";
 import Message from "../Message/Message";
 import MessageInput from "../MessageInput/MessageInput";
+import { useDispatch, useSelector } from "react-redux";
 //import useWindowDimensions from "../../hooks";
 //const { height, width } = useWindowDimensions();
 
@@ -24,9 +25,10 @@ const useStyles = makeStyles(() => ({
 
 function Room() {
   const { getRoomMessages, sendMessage, getRoom } = useRooms();
-  const [messages, setMessages] = useState([]);
-  const [roomName, setRoomName] = useState("");
 
+  const messages = useSelector((state) => state.messagesReducer.messages);
+  const [roomName, setRoomName] = useState("");
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   useEffect(() => {
@@ -42,13 +44,14 @@ function Room() {
 
     return function () {
       clearInterval(interval);
+      dispatch({ type: "CLEAR_MESSAGES" });
     };
   }, []);
 
   function loadMessages() {
     getRoomMessages()
       .then((res) => {
-        setMessages(res.data.results.reverse());
+        dispatch({ type: "LOAD_MESSAGES", payload: res.data.results.reverse() });
       })
       .catch((err) => {
         throw err;
@@ -74,41 +77,39 @@ function Room() {
   }
 
   return (
-    <Grid container>
-      <Grid container item xs={12} sm={6} lg={7}>
-        <Grid item xs={12}>
-          <Typography variant="h4" align="center">
-            {roomName}
-          </Typography>
-        </Grid>
+    <Grid container item xs={12}>
+      <Grid item xs={8}>
+        <Typography variant="h4" align="center">
+          {roomName}
+        </Typography>
+      </Grid>
 
-        <Grid id="messages" item xs={12} className={classes.messages}>
-          {messages.map((message, i) => {
-            return (
-              <Message
-                key={message.created_at}
-                message={message}
-                showDate={
-                  !messages[i - 1] ||
-                  messages.length === i + 1 ||
-                  message.author !== messages[i - 1].author
-                }
-              />
-            );
-          })}
-          <div id="messages-bottom" className={classes.bottom}></div>
-        </Grid>
-
+      <Grid id="messages" item xs={12} className={classes.messages}>
+        {messages.map((message, i) => {
+          return (
+            <Message
+              key={message.created_at}
+              message={message}
+              showDate={
+                !messages[i - 1] ||
+                messages.length === i + 1 ||
+                message.author !== messages[i - 1].author
+              }
+            />
+          );
+        })}
+        <div id="messages-bottom" className={classes.bottom}></div>
         <MessageInput handleSendMessage={handleSendMessage} />
       </Grid>
-      <Grid item xs={2}>
-        <RoomList />
-      </Grid>
-      <Grid item xs={2}>
-        Users: <UserList />
-      </Grid>
+      <RoomList />
     </Grid>
   );
 }
 
 export default Room;
+{
+  /* <UserList /> */
+}
+{
+  /* <RoomList /> */
+}

@@ -28,6 +28,7 @@ function RoomList() {
 
   function chanceRoom() {
     dispatch({ type: "CLEAR_MESSAGES" });
+    dispatch({ type: "CHANGE_ROOM_NAME", payload: "Loading" });
     getRoomMessages()
       .then((res) => {
         dispatch({ type: "LOAD_MESSAGES", payload: res.data.results.reverse() });

@@ -71,9 +71,7 @@ export default function Home() {
       >
         <div className={classes.paper}>
           <img src="https://micron-web.herokuapp.com/images/micron.ico" width="100px" />
-          <Typography component="h1" variant="h2">
-            micron
-          </Typography>
+
           <Typography variant="h5" gutterBottom align="center">
             Welcome to the brand new chat experience.
           </Typography>

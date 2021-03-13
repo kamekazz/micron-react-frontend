@@ -70,8 +70,11 @@ export default function Home() {
         className={classes.box}
       >
         <div className={classes.paper}>
-          <img src="https://micron-web.herokuapp.com/images/micron.ico" width="100px" />
-
+          <img
+            src="https://micron-web.herokuapp.com/images/micron.ico"
+            width="200px"
+            style={{ marginBottom: "4rem" }}
+          />
           <Typography variant="h5" gutterBottom align="center">
             Welcome to the brand new chat experience.
           </Typography>

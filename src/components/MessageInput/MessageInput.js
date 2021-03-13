@@ -1,10 +1,16 @@
 import React, { useState } from "react";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid, makeStyles, TextField } from "@material-ui/core";
 import EmojiPicker from "../EmojiPicker/EmojiPicker";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    gridArea: "MessageInput",
+  },
+}));
 
 export default function MessageInput({ handleSendMessage }) {
   const [userInput, setUserInput] = useState("");
-
+  const classes = useStyles();
   function handleSend() {
     setUserInput("");
     handleSendMessage(userInput);
@@ -25,7 +31,7 @@ export default function MessageInput({ handleSendMessage }) {
   }
 
   return (
-    <Grid item xs={12} container>
+    <Grid item xs={12} container className={classes.root}>
       <Grid item xs={11}>
         <TextField
           fullWidth

@@ -2,7 +2,8 @@ import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
-
+import { Provider } from "react-redux";
+import store from "./redux/store";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const token = localStorage.getItem("token");
@@ -28,4 +29,10 @@ axios("/api-token-verify/", {
     redirectToLoginIfNotAtUnauthenticatedView();
   });
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+
+  document.getElementById("app")
+);

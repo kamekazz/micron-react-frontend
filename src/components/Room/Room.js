@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRooms } from ".././../hooks";
 import { Typography, Grid, makeStyles } from "@material-ui/core";
 import RoomList from "../RoomList/RoomList";
-import UserList from "../UserList/UserList";
+// import UserList from "../UserList/UserList";
 import Message from "../Message/Message";
 import MessageInput from "../MessageInput/MessageInput";
 import { useDispatch, useSelector } from "react-redux";

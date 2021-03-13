@@ -3,7 +3,7 @@ import { useRooms } from "../../hooks";
 import CreateRoom from "./CreateRoom/CreateRoom";
 import { makeStyles, Box, Grid, CardActionArea } from "@material-ui/core";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 const useStyles = makeStyles(() => ({
   root: {},

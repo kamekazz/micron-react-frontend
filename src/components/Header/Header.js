@@ -2,15 +2,7 @@ import React from "react";
 import { useUser } from "../../hooks";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import {
-  makeStyles,
-  IconButton,
-  Grid,
-  Typography,
-  Menu,
-  MenuItem,
-  Box,
-} from "@material-ui/core";
+import { makeStyles, IconButton, Typography, Menu, MenuItem } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import { Link } from "react-router-dom";
 

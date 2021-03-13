@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 const initialState = {
   messages: [],
+  roomName: "Micron",
 };
 
 export default function (state = initialState, action) {
@@ -16,15 +17,15 @@ export default function (state = initialState, action) {
         ...state,
         messages: [],
       };
-    case "CHANCE_ROOM":
+    case "CHANGE_ROOM":
       return {
         ...state,
         messages: payload,
       };
-    case "SET_URL":
+    case "CHANGE_ROOM_NAME":
       return {
         ...state,
-        url: payload,
+        roomName: payload,
       };
     default:
       return state;

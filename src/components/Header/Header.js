@@ -5,6 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles, IconButton, Typography, Menu, MenuItem } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ function Header() {
   const classes = useStyles();
   const { signOut } = useUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const roomName = useSelector((state) => state.messagesReducer.roomName);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -51,7 +52,7 @@ function Header() {
             <img src="https://micron-web.herokuapp.com/images/micron.ico" width="28px" />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Micron
+            {roomName}
           </Typography>
           <IconButton onClick={handleClick}>
             <PersonIcon />

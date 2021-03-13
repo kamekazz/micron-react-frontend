@@ -36,6 +36,7 @@ function Room() {
 
     getRoom().then((res) => {
       setRoomName(res.data.name);
+      dispatch({ type: "CHANGE_ROOM_NAME", payload: res.data.name });
     });
 
     const interval = setInterval(() => {
@@ -78,12 +79,6 @@ function Room() {
 
   return (
     <Grid container item xs={12}>
-      <Grid item xs={8}>
-        <Typography variant="h4" align="center">
-          {roomName}
-        </Typography>
-      </Grid>
-
       <Grid id="messages" item xs={12} className={classes.messages}>
         {messages.map((message, i) => {
           return (
@@ -101,7 +96,6 @@ function Room() {
         <div id="messages-bottom" className={classes.bottom}></div>
         <MessageInput handleSendMessage={handleSendMessage} />
       </Grid>
-      <RoomList />
     </Grid>
   );
 }

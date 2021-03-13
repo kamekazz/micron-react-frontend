@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React from "react";
+import React, { useEffect } from "react";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import RoomList from "../RoomList/RoomList";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +51,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: "CHANGE_ROOM_NAME", payload: "Micron" });
+  }, []);
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
